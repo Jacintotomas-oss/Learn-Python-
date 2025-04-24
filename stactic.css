@@ -1,0 +1,25 @@
+/* Estilos para la navegación con pestañas */
+.nav-pills .nav-link {
+    border-radius: 5px;
+    color: #fff;
+    background-color: #007bff;
+    margin-right: 5px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #0056b3;
+}
+
+.nav-pills .nav-link:disabled {
+    background-color: #6c757d;
+    color: #ccc;
+}
+
+/* Estilos para el contenido de las pestañas */
+.tab-content {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Learn Python</title>
+    <link rel="stylesheet" href="static/style.css">
+    <!-- Incluye Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Bienvenido a Learn Python</h1>
+        <p class="text-center">Donde aprenderás los conceptos básicos del lenguaje Python</p>
+        <p>Selecciona un tema para que podamos comenzar:</p>
+
+        <!-- Navegación con pestañas -->
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-variables-tab" data-bs-toggle="pill" data-bs-target="#pills-variables" type="button" role="tab" aria-controls="pills-variables" aria-selected="true">Variables</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-condicionales-tab" data-bs-toggle="pill" data-bs-target="#pills-condicionales" type="button" role="tab" aria-controls="pills-condicionales" aria-selected="false">Condicionales</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-funciones-tab" data-bs-toggle="pill" data-bs-target="#pills-funciones" type="button" role="tab" aria-controls="pills-funciones" aria-selected="false">Funciones</button>
+            </li>
+        </ul>
+
+        <!-- Contenido de las pestañas -->
+        <div class="tab-content" id="pills-tabContent">
+            <!-- Pestaña Variables -->
+            <div class="tab-pane fade show active" id="pills-variables" role="tabpanel" aria-labelledby="pills-variables-tab" tabindex="0">
+                <h2>Variables</h2>
+                <ul>
+                    <li><a href="/variables">Teoría de Variables</a></li>
+                    <li><a href="/variablesEjemplo">Ejercicio de Variables</a></li>
+                </ul>
+            </div>
+
+            <!-- Pestaña Condicionales -->
+            <div class="tab-pane fade" id="pills-condicionales" role="tabpanel" aria-labelledby="pills-condicionales-tab" tabindex="0">
+                <h2>Condicionales</h2>
+                <ul>
+                    <li><a href="/condicionales">Teoría de Condicionales</a></li>
+                    <li><a href="/cEjemplo">Ejercicio de Condicionales</a></li>
+                </ul>
+            </div>
+
+            <!-- Pestaña Funciones -->
+            <div class="tab-pane fade" id="pills-funciones" role="tabpanel" aria-labelledby="pills-funciones-tab" tabindex="0">
+                <h2>Funciones</h2>
+                <ul>
+                    <li><a href="/funciones">Teoría de Funciones</a></li>
+                    <li><a href="/funcionesEjemplo">Ejercicio de Funciones</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <p>Si tienes alguna pregunta o necesitas ayuda, consulta los siguientes videos.</p>
+        <p>Recuerda que este sitio es un recurso para aprender los conceptos básicos de Python. ¡Disfruta aprendiendo!</p>
+
+        <div class="text-center mt-4">
+            <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Incluye Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
