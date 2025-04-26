@@ -1,7 +1,8 @@
-from flask import Flask, redirect, render_template, request, session
+import os
+from flask import Flask, redirect, render_template, request, session, flash
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Reemplaza 'your_secret_key' con una clave segura
+app.secret_key = os.urandom(24)  # Reemplaza 'your_secret_key' con una clave segura
 
 users = {}  # Diccionario temporal para almacenar usuarios (usa una base de datos en producción)
 
@@ -85,9 +86,8 @@ def cEjemplo():
 @app.route("/logout")
 def logout():
     session.pop("user", None)  # Elimina al usuario de la sesión
+    flash("Has cerrado sesión correctamente", "info")
     return redirect("/login")
-
- # Cambiado para mostrar el formulario de registro
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
