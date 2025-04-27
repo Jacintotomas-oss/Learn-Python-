@@ -1,8 +1,21 @@
 import os
 from flask import Flask, redirect, render_template, request, session, flash
+from flask_sqlalchemy import SQLAlchemy
+import bcrypt
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Reemplaza 'your_secret_key' con una clave segura
+app.secret_key = os.urandom(24)  # Genera una clave secreta segura
+
+# Configuración de la base de datos
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'  # Base de datos SQLite
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)  # Inicializa la base de datos
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # ID único para cada usuario
+    username = db.Column(db.String(80), unique=True, nullable=False)  # Nombre de usuario
+    password = db.Column(db.String(120), nullable=False)  # Contraseña
 
 users = {}  # Diccionario temporal para almacenar usuarios (usa una base de datos en producción)
 
@@ -14,22 +27,26 @@ def register():
         
         # Verifica si los campos están vacíos
         if not username or not password:
-            error = "Todos los campos son obligatorios"
-            return render_template("register.html", error=error)
+            flash("Todos los campos son obligatorios", "danger")
+            return redirect("/register")
         
         # Verifica si el usuario ya existe
-        if username in users:
-            error = "El usuario ya existe"
-            return render_template("register.html", error=error)
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash("El usuario ya existe", "danger")
+            return redirect("/register")
         
-        # Guarda el usuario en el diccionario
-        users[username] = password
+        # Cifra la contraseña antes de guardarla
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         
-        # Inicia sesión automáticamente
-        session["user"] = username
+        # Guarda el usuario en la base de datos
+        new_user = User(username=username, password=hashed_password.decode('utf-8'))
+        db.session.add(new_user)
+        db.session.commit()
         
-        # Redirige al contenido del sitio web
-        return redirect("/")
+        # Mensaje de éxito
+        flash("Cuenta creada exitosamente. Ahora puedes iniciar sesión.", "success")
+        return redirect("/login")
     
     return render_template("register.html")
 
@@ -38,13 +55,16 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        
         # Verifica si el usuario existe y la contraseña es correcta
-        if username in users and users[username] == password:
+        user = User.query.filter_by(username=username).first()
+        if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
             session["user"] = username  # Guarda al usuario en la sesión
+            flash("Inicio de sesión exitoso", "success")  # Mensaje flash de éxito
             return redirect("/")  # Redirige al contenido del sitio web
         else:
-            error = "Usuario o contraseña incorrectos"
-            return render_template("login.html", error=error)
+            flash("Usuario o contraseña incorrectos", "danger")  # Mensaje flash de error
+            return redirect("/login")
     return render_template("login.html")
 
 @app.route('/')
@@ -71,6 +91,24 @@ def condicionales():
         return redirect("/register")
     return render_template('condicionales.html')
 
+@app.route("/ciclos")
+def ciclos():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template('ciclos.html')
+
+@app.route("/listas")
+def listas():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("listas.html")
+
+@app.route("/OL")
+def OL():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("OL.html")
+
 @app.route("/variablesEjemplo")
 def variablesEjemplo():
     return render_template('variablesEjemplo.html')
@@ -83,6 +121,22 @@ def funcionesEjemplo():
 def cEjemplo():
     return render_template('cEjemplo.html')
 
+@app.route("/ciclosEjemplo")
+def ciclosEjemplo():
+    return render_template('ciclosEjemplo.html')
+
+@app.route("/listasEjemplo")
+def listasEjemplo():
+    return render_template('listasEjemplo.html')
+
+@app.route("/OLEjemplo")
+def OLEjemplo():
+    return render_template('OLEjemplo.html')
+
+@app.route('/OLejemplos')
+def operadores_logicos_ejemplos():
+    return render_template('OLejemplos.html')
+
 @app.route("/logout")
 def logout():
     session.pop("user", None)  # Elimina al usuario de la sesión
@@ -90,4 +144,6 @@ def logout():
     return redirect("/login")
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Crea las tablas en la base de datos
     app.run(debug=True, host='0.0.0.0', port=5000)
