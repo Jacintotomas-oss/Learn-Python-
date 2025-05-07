@@ -17,55 +17,46 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)  # Nombre de usuario
     password = db.Column(db.String(120), nullable=False)  # Contraseña
 
-users = {}  # Diccionario temporal para almacenar usuarios (usa una base de datos en producción)
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
         
-        # Verifica si los campos están vacíos
-        if not username or not password:
-            flash("Todos los campos son obligatorios", "danger")
-            return redirect("/register")
-        
         # Verifica si el usuario ya existe
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            flash("El usuario ya existe", "danger")
+            flash("El usuario ya existe. Intenta con otro nombre de usuario.", "danger")
             return redirect("/register")
         
-        # Cifra la contraseña antes de guardarla
+        # Crea un nuevo usuario
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        
-        # Guarda el usuario en la base de datos
         new_user = User(username=username, password=hashed_password.decode('utf-8'))
         db.session.add(new_user)
         db.session.commit()
         
-        # Mensaje de éxito
-        flash("Cuenta creada exitosamente. Ahora puedes iniciar sesión.", "success")
+        flash("Registro exitoso. Ahora puedes iniciar sesión.", "success")
         return redirect("/login")
     
-    return render_template("register.html")
+    return render_template("register.html")  # Renderiza directamente el archivo register.html
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form.get("username")
+        password = request.form.get("password")
         
-        # Verifica si el usuario existe y la contraseña es correcta
+        # Verifica si el usuario existe
         user = User.query.filter_by(username=username).first()
         if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
             session["user"] = username  # Guarda al usuario en la sesión
-            flash("Inicio de sesión exitoso", "success")  # Mensaje flash de éxito
-            return redirect("/")  # Redirige al contenido del sitio web
+            flash("Inicio de sesión exitoso.", "success")
+            return redirect("/")
         else:
-            flash("Usuario o contraseña incorrectos", "danger")  # Mensaje flash de error
+            flash("Usuario o contraseña incorrectos.", "danger")
             return redirect("/login")
-    return render_template("login.html")
+    
+    return render_template("login.html")  # Renderiza directamente el archivo login.html
 
 @app.route('/')
 def index():
@@ -73,29 +64,37 @@ def index():
         return render_template("index.html", user=session["user"])
     return redirect("/register")  # Redirige a la página de registro si no hay sesión
 
+@app.route("/logout")
+def logout():
+    session.pop("user", None)  # Elimina al usuario de la sesión
+    flash("Has cerrado sesión correctamente", "info")
+    return redirect("/login")
+
+#ruta de las paginas de teorias 
+
 @app.route('/variables')
 def variables():
     if "user" not in session:
         return redirect("/register")  # Redirige al registro si no está autenticado
     return render_template('variables.html')
 
-@app.route('/funciones')
-def funciones():
-    if "user" not in session:
-        return redirect("/register")
-    return render_template('funciones.html')
-
 @app.route('/condicionales')
 def condicionales():
     if "user" not in session:
         return redirect("/register")
-    return render_template('condicionales.html')
+    return render_template("condicionales.html")
 
-@app.route("/ciclos")
+@app.route ("/funciones")
+def funciones():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("funciones.html")
+
+@app.route ("/ciclos")
 def ciclos():
     if "user" not in session:
         return redirect("/register")
-    return render_template('ciclos.html')
+    return render_template("ciclos.html")
 
 @app.route("/listas")
 def listas():
@@ -105,43 +104,63 @@ def listas():
 
 @app.route("/OL")
 def OL():
-    if "user" not in session:
+    if "user" not in session :
         return redirect("/register")
     return render_template("OL.html")
 
+@app.route("/diccionario")
+def diccionario():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("diccionario.html")
+
+#Ruta de las paginas de ejercicios
+
 @app.route("/variablesEjemplo")
 def variablesEjemplo():
-    return render_template('variablesEjemplo.html')
-
-@app.route("/funcionesEjemplo")
-def funcionesEjemplo():
-    return render_template('funcionesEjemplo.html')
+    if "user" not in session: 
+        return redirect("/register")
+    return render_template("variablesEjemplo.html")
 
 @app.route("/cEjemplo")
 def cEjemplo():
-    return render_template('cEjemplo.html')
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("cEjemplo.html")
+
+@app.route("/funcionesEjemplo")
+def funcionesEjemplo():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("funcionesEjemplo.html")
 
 @app.route("/ciclosEjemplo")
 def ciclosEjemplo():
-    return render_template('ciclosEjemplo.html')
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("ciclosEjemplo.html")
 
 @app.route("/listasEjemplo")
 def listasEjemplo():
-    return render_template('listasEjemplo.html')
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("listasEjemplo.html")
 
-@app.route("/OLEjemplo")
-def OLEjemplo():
-    return render_template('OLEjemplo.html')
+@app.route("/Dejemplos")
+def Dejemplos():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("Dejemplos.html")
 
-@app.route('/OLejemplos')
-def operadores_logicos_ejemplos():
-    return render_template('OLejemplos.html')
+@app.route("/OLejemplos")
+def OLejemplos():
+    if "user" not in session:
+        return redirect("/register")
+    return render_template("OLejemplos.html")
 
-@app.route("/logout")
-def logout():
-    session.pop("user", None)  # Elimina al usuario de la sesión
-    flash("Has cerrado sesión correctamente", "info")
-    return redirect("/login")
+
+    
+    
 
 if __name__ == '__main__':
     with app.app_context():
