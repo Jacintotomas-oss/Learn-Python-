@@ -4,14 +4,32 @@
     <meta charset="UTF-8">
     <title>Learn Python</title>
     <link rel="stylesheet" href="static/style.css">
+    
+  
     <!-- Incluye Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--fondo-->
+    <style>
+        body {
+            background: #08090d;
+            background-image: url(https://assets.codepen.io/13471/abstract-light.jpg), 
+                              linear-gradient(to right in oklab, hsl(222 50% 75%), hsl(255 50% 75%));
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: hard-light;
+            padding: 0;
+        }
+
+       
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Bienvenido a Learn Python</h1>
-        <p class="text-center">Donde aprenderás los conceptos básicos del lenguaje Python</p>
-        <p>Selecciona un tema para que podamos comenzar:</p>
+        <img src="static/img/logo.png" alt="Logo" class="me-3" style="width: 50px; height: 50px;">
+        <h1 class="text-center" style="line-height: 2.5; color: #FFD700;">Learn Python 🐍</h1>
+        
+        <p style="line-height: 1.5; color: #f0f3f4;">Bienvenido a Learn Python donde aprenderás los conceptos básicos del lenguaje Python, este sitio veras unicamente los temas mas sencillos como los conceptos de variables, condicionales, funciones entre otros eso con el fin de que puedas conocer los conceptos mas basicos del lenguaje para que despues puedas seguir con temas mas complejos debes tener en cuenta que por cada tema que finalizes deberas elaborar un ejercicio para poder practicar, tambien esta el apartado de videos donde te puedes apoyar con videos de youtube</p>
+        <p style="line-height: 1.5; color: #f0f3f4;">Selecciona un tema para que podamos comenzar:</p>
 
         <!-- Navegación con pestañas -->
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -33,13 +51,16 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-ol-tab" data-bs-toggle="pill" data-bs-target="#pills-ol" type="button" role="tab" aria-controls="pills-ol" aria-selected="false">Operadores Lógicos</button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-diccionarios-tab" data-bs-toggle="pill" data-bs-target="#pills-diccionarios" type="button" role="tab" aria-controls="pills-diccionarios" aria-selected="false">Diccionarios</button>
+            </li>
         </ul>
 
         <!-- Contenido de las pestañas -->
         <div class="tab-content" id="pills-tabContent">
             <!-- Pestaña Variables -->
             <div class="tab-pane fade show active" id="pills-variables" role="tabpanel" aria-labelledby="pills-variables-tab" tabindex="0">
-                <h2>Variables</h2>
+                <h2 style="color: #FFD700;">Variables</h2>
                 <ul>
                     <li><a href="/variables">Teoría de Variables</a></li>
                     <li><a href="/variablesEjemplo">Ejercicio de Variables</a></li>
@@ -48,7 +69,7 @@
 
             <!-- Pestaña Condicionales -->
             <div class="tab-pane fade" id="pills-condicionales" role="tabpanel" aria-labelledby="pills-condicionales-tab" tabindex="0">
-                <h2>Condicionales</h2>
+                <h2 style="color: #FFD700;">Condicionales</h2>
                 <ul>
                     <li><a href="/condicionales">Teoría de Condicionales</a></li>
                     <li><a href="/cEjemplo">Ejercicio de Condicionales</a></li>
@@ -57,7 +78,7 @@
 
             <!-- Pestaña Funciones -->
             <div class="tab-pane fade" id="pills-funciones" role="tabpanel" aria-labelledby="pills-funciones-tab" tabindex="0">
-                <h2>Funciones</h2>
+                <h2 style ="color: #FFD700;">Funciones</h2>
                 <ul>
                     <li><a href="/funciones">Teoría de Funciones</a></li>
                     <li><a href="/funcionesEjemplo">Ejercicio de Funciones</a></li>
@@ -66,7 +87,7 @@
 
             <!-- Pestaña Ciclos -->
             <div class="tab-pane fade" id="pills-ciclos" role="tabpanel" aria-labelledby="pills-ciclos-tab" tabindex="0">
-                <h2>Ciclos</h2>
+                <h2 style ="color: #FFD700;">Ciclos</h2>
                 <ul>
                     <li><a href="/ciclos">Teoría de Ciclos</a></li>
                     <li><a href="/ciclosEjemplo">Ejercicio de Ciclos</a></li>
@@ -75,7 +96,7 @@
 
             <!-- Pestaña Listas -->
             <div class="tab-pane fade" id="pills-listas" role="tabpanel" aria-labelledby="pills-listas-tab" tabindex="0">
-                <h2>Listas</h2>
+                <h2 style ="color: #FFD700;">Listas</h2>
                 <ul>
                     <li><a href="/listas">Teoría de Listas</a></li>
                     <li><a href="/listasEjemplo">Ejercicio de Listas</a></li>
@@ -83,12 +104,22 @@
             </div>
             <!-- Pestaña Operadores Lógicos -->
             <div class="tab-pane fade" id="pills-ol" role="tabpanel" aria-labelledby="pills-ol-tab" tabindex="0">
-                <h2>Operadores Lógicos</h2>
+                <h2 style= "color: #FFD700;">Operadores Lógicos</h2>
                 <ul>
                     <li><a href="/OL">Teoría de Operadores Lógicos</a></li>
                     <li><a href="/OLejemplos">Ejercicio de Operadores Lógicos</a></li>
                 </ul>
+
             </div>
+
+            <!-- Pestaña Diccionarios -->
+            <div class="tab-pane fade" id="pills-diccionarios" role="tabpanel" aria-labelledby="pills-diccionarios-tab" tabindex="0">
+                <h2 style="color: #FFD700;">Diccionarios</h2>
+                <ul>
+                    <li><a href="/diccionario">Teoría de Diccionarios</a></li>
+                    <li><a href="/Dejemplos">Ejercicio de Diccionarios</a></li>
+                </ul>
+            </div>    
 
         </div>
 
@@ -96,7 +127,7 @@
         <!-- Sección fija para videos y cerrar sesión -->
         <hr class="my-4">
 
-        <p>Si tienes alguna pregunta o necesitas ayuda, consulta los siguientes videos.</p>
+        <p style = "color: #f0f3f4;">Si tienes alguna pregunta o necesitas ayuda, consulta los siguientes videos.</p>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Videos de Ayuda
@@ -116,7 +147,7 @@
             </ul>
         </div>
 
-        <p>Recuerda que este sitio es un recurso para aprender los conceptos básicos de Python. ¡Disfruta aprendiendo!</p>
+        <p style ="color : #f0f3f4; ">Recuerda que este sitio es un recurso para aprender los conceptos básicos de Python. ¡Disfruta aprendiendo!</p>
 
         <div class="text-center mt-4">
             <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
