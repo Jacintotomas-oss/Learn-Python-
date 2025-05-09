@@ -1,0 +1,133 @@
+<!-- filepath: c:\Users\villa\OneDrive\Documentos\Quizz\templates\resultados.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <style>
+        /* Fondo general */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Azul claro */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor principal de resultados */
+        .resultados {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Título de resultados */
+        .resultados h2 {
+            color: #4CAF50;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Subtítulo */
+        .resultados p {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Lista de preguntas y respuestas */
+        .resultados ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Estilo para cada pregunta */
+        .resultados li {
+            margin-bottom: 15px;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Respuestas correctas */
+        .correcta {
+            color: #4CAF50; /* Verde */
+            font-weight: bold;
+            border-left: 5px solid #4CAF50;
+            padding-left: 10px;
+        }
+
+        /* Respuestas incorrectas */
+        .incorrecta {
+            color: #F44336; /* Rojo */
+            font-weight: bold;
+            border-left: 5px solid #F44336;
+            padding-left: 10px;
+        }
+
+        /* Botón para volver al inicio */
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .volver:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Pie de página */
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="resultados">
+        <h2>Resultados del Quizz</h2>
+        <p>Respuestas correctas: {{ correctas }}</p>
+        <ul>
+            {% for pregunta, respuesta, estado in resultados %}
+                <li class="{{ estado }}">{{ pregunta }}: {{ respuesta }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/quiz" class="volver">Volver al inicio</a>
+    </div>
+</body>
+</html>

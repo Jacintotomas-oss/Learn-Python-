@@ -3,16 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <title>Funciones en Python</title>
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Fondo del body */
+        body {
+            background-color: #f0e6d2;
+            background-image: url("../static/img/image.png");
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            min-height: 100vh;
+            margin: 10px;
+            padding: 0;
+            color: black;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decoraciones visuales */
+        .python-symbol {
+            position: absolute;
+            opacity: 0.5;
+            z-index: -1;
+            font-size: 1.5rem;
+        }
+
+        .bracket {
+            position: absolute;
+            color: rgb(182, 180, 180);
+            font-size: 3rem;
+            font-weight: bold;
+            z-index: -1;
+        }
+        
+        .code-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .console-decoration {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: -1;
+        }
+
+        h1 {
+            color: #581845;
+            text-align: center;
+        }
+
+        a {
+            color: #581845;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo personalizado para el bloque de código */
+        pre code {
+            background-color: #f8f9fa; /* Fondo claro */
+            color: #212529; /* Texto oscuro */
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", Courier, monospace;
+            display: block;
+            overflow-x: auto; /* Scroll horizontal si es necesario */
+        }
+    </style>
 </head>
 <body>
-    <h1>Funciones</h1>
-    <p>Las funciones son bloques reutilizables de código:</p>
-    <pre>
-def saludar(nombre):
-    print(f"Hola {nombre}")
 
-saludar("Ana")
-    </pre>
-    <a href="/">Volver al inicio</a>
+    <!-- Decoraciones de fondo -->
+    <div class="python-symbol" style="top: 10%; right: 15%;">🐍</div>
+    <div class="python-symbol" style="bottom: 15%; left: 10%;">{}[]</div>
+    
+    <div class="bracket" style="top: 20%; left: 3%;">{</div>
+    <div class="bracket" style="bottom: 25%; right: 5%;">}</div>
+    
+    <div class="code-icon" style="top: 5%; left: 20%;">
+        <i class="fas fa-code"></i>
+    </div>
+    
+    <div class="code-icon" style="bottom: 10%; right: 20%;">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 40%; left: 15%;">
+        <i class="fab fa-python" style="font-size: 2rem; color: #3776AB;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 60%; right: 20%;">
+        <i class="fas fa-terminal" style="font-size: 1.8rem; color: #4CAF50;"></i>
+    </div>
+    
+    <div class="console-decoration" style="top: 25%; right: 25%;"></div>
+    
+    <div class="floating-icon" style="bottom: 10%; left: 25%;">
+        <i class="fas fa-bug" style="font-size: 1.5rem; color: #FF5252;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 15%; right: 30%;">
+        <i class="fas fa-cogs" style="font-size: 1.8rem; color: #607D8B;"></i>
+    </div>
+    
+    <div class="code-icon" style="top: 70%; left: 20%;">
+        <i class="fas fa-file-code"></i>
+    </div>
+
+    <!-- Contenido principal -->
+    <h1>Funciones</h1>
+    <p>💡 ¿Qué son las funciones?</p>
+    <p>Una función es un bloque de código que solo se ejecuta cuando la llamas. Son geniales para reutilizar código y mantener tu programa organizado. En pocas palabras es "Define una función una vez y úsala muchas veces".</p>
+    <p>Para poder definir una función debes seguir los siguientes pasos:</p>
+    <ul>
+      <li>Definir el nombre de la función con la palabra clave <code>def</code>.</li>
+      <li>Especificar el nombre de la función.</li>
+      <li>Incluir paréntesis con parámetros (si es necesario).</li>
+      <li>Escribir el código indentado que se ejecutará.</li>
+    </ul>
+
+    <img src="../static/img/funciones.png" alt="Funciones en Python">
+    
+    <pre><code>
+        def adivina_edad_dragon():
+        edad_real = 587
+        intento = int(input("¿Cuántos años crees que tiene el dragón? 🐉: "))
+    
+        if intento == edad_real:
+            print("¡Correcto! Ahora eres su amigo. 🐉🤝")
+        else:
+            print(f"¡Incorrecto! El dragón se ofende porque tiene {edad_real} años y aparenta menos 😠🔥")
+    
+    adivina_edad_dragon()
+    
+    </code></pre>
+    <a href="/" class="btn btn-primary">Volver al inicio</a>
 </body>
 </html>

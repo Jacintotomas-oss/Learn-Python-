@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicio de Operadores Lógicos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Operadores Lógicos</title>
     <!-- Incluye Bootstrap CSS para estilos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Fondo del body */
+        body {
+            background-color: #f0e6d2;
+            background-image: url("../static/img/image.png");
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            min-height: 100vh;
+            margin: 10px;
+            padding: 0;
+            color: black;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
         /* Estilo personalizado para el bloque de código */
         pre code {
             background-color: #f8f9fa; /* Fondo claro */
@@ -16,17 +35,138 @@
             display: block;
             overflow-x: auto; /* Scroll horizontal si es necesario */
         }
+
+        /* Decoraciones visuales */
+        .python-symbol {
+            position: absolute;
+            opacity: 0.5;
+            z-index: -1;
+            font-size: 1.5rem;
+        }
+
+        .bracket {
+            position: absolute;
+            color: rgb(182, 180, 180);
+            font-size: 3rem;
+            font-weight: bold;
+            z-index: -1;
+        }
+        
+        .code-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .console-decoration {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: -1;
+        }
+
+        h1 {
+            color: #581845;
+            text-align: center;
+        }
+
+        a {
+            color: #581845;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="container mt-5">
-    <h1 class="text-center">Ejercicio de Operadores Lógicos</h1>
-    <p class="text-center">Aquí tienes un ejemplo de cómo usar operadores lógicos en Python:</p>
+
+    <!-- Decoraciones de fondo -->
+    <div class="python-symbol" style="top: 10%; right: 15%;">🐍</div>
+    <div class="python-symbol" style="bottom: 15%; left: 10%;">{}[]</div>
+    
+    <div class="bracket" style="top: 20%; left: 3%;">{</div>
+    <div class="bracket" style="bottom: 25%; right: 5%;">}</div>
+    
+    <div class="code-icon" style="top: 5%; left: 20%;">
+        <i class="fas fa-code"></i>
+    </div>
+    
+    <div class="code-icon" style="bottom: 10%; right: 20%;">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 40%; left: 15%;">
+        <i class="fab fa-python" style="font-size: 2rem; color: #3776AB;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 60%; right: 20%;">
+        <i class="fas fa-terminal" style="font-size: 1.8rem; color: #4CAF50;"></i>
+    </div>
+    
+    <div class="console-decoration" style="top: 25%; right: 25%;"></div>
+    
+    <div class="floating-icon" style="bottom: 10%; left: 25%;">
+        <i class="fas fa-bug" style="font-size: 1.5rem; color: #FF5252;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 15%; right: 30%;">
+        <i class="fas fa-cogs" style="font-size: 1.8rem; color: #607D8B;"></i>
+    </div>
+    
+    <div class="code-icon" style="top: 70%; left: 20%;">
+        <i class="fas fa-file-code"></i>
+    </div>
+
+    <!-- Contenido principal -->
+    <header>
+        <h1>Ejemplo de Operadores Lógicos</h1>
+    </header>
+    <p>Para que puedas practicar y aprender más sobre los operadores lógicos y cómo funcionan, elabora el siguiente ejercicio:</p>
+
+    <p><strong>Ejercicio:</strong> Escribe un programa que verifique si una persona puede votar. La persona debe tener al menos 18 años y ser ciudadano.</p>
+    <p><strong>Ejemplo de código:</strong></p>
     <pre><code>
-<p>print("hola")</p>
+edad = 20
+es_ciudadano = True
+
+if edad >= 18 and es_ciudadano:
+    print("Puedes votar.")
+else:
+    print("No puedes votar.")
     </code></pre>
 
-    <div class="text-center mt-4">
-        <a href="/" class="btn btn-primary">Volver al inicio</a>
-    </div>
+    <p>Ahora modifica el programa para incluir un operador lógico <code>or</code> que permita votar si la persona tiene un permiso especial, incluso si no cumple con las condiciones anteriores.</p>
+    <p><strong>Ejemplo de código:</strong></p>
+    <pre><code>
+edad = 16
+es_ciudadano = False
+permiso_especial = True
+
+if (edad >= 18 and es_ciudadano) or permiso_especial:
+    print("Puedes votar.")
+else:
+    print("No puedes votar.")
+    </code></pre>
+
+    <a href="/" class="btn btn-primary">Volver al inicio</a>
+
 </body>
 </html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZZ</title>
+    <style>
+        /* Estilo general */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor principal */
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        /* Preguntas */
+        h4 {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* Opciones */
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Botón de envío */
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Contenedor de resultados */
+        .resultados {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quizz App</h1>
+    <form action="/enviarquizz" method="post">
+        {% for pregunta in Preguntas_Lista %}
+            <h4>{{ pregunta.pregunta }}</h4>
+            <input type="radio" name="{{ pregunta.p_id }}" value="{{ pregunta.opcion1 }}"> {{ pregunta.opcion1 }}<br>
+            <input type="radio" name="{{ pregunta.p_id }}" value="{{ pregunta.opcion2 }}"> {{ pregunta.opcion2 }}<br>
+            <input type="radio" name="{{ pregunta.p_id }}" value="{{ pregunta.opcion3 }}"> {{ pregunta.opcion3 }}<br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+    <div class="resultados">
+        <h2>Resultados del Quizz</h2>
+        <p>Respuestas correctas: {{ correctas }}</p>
+        <ul>
+            {% for pregunta, respuesta, estado in resultados %}
+                <li class="{{ estado }}">{{ pregunta }}: {{ respuesta }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/index" class="volver">Volver al inicio</a>
+    </div>
+</body>
+</html>

@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Variables Ejemplo</title>
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Fondo del body */
+        body {
+            background-color: #f0e6d2;
+            background-image: url("../static/img/image.png");
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: black;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
         /* Estilo personalizado para el bloque de código */
         pre code {
             background-color: #f8f9fa; /* Fondo claro */
@@ -15,11 +33,111 @@
             display: block;
             overflow-x: auto; /* Scroll horizontal si es necesario */
         }
+
+        /* Decoraciones visuales */
+        .python-symbol {
+            position: absolute;
+            opacity: 0.5;
+            z-index: -1;
+            font-size: 1.5rem;
+        }
+
+        .bracket {
+            position: absolute;
+            color: rgb(182, 180, 180);
+            font-size: 3rem;
+            font-weight: bold;
+            z-index: -1;
+        }
+        
+        .code-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .console-decoration {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: -1;
+        }
+
+        h1 {
+            color: #581845;
+            text-align: center;
+        }
+
+        a {
+            color: #581845;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Decoraciones de fondo -->
+    <div class="python-symbol" style="top: 10%; right: 15%;">🐍</div>
+    <div class="python-symbol" style="bottom: 15%; left: 10%;">{}[]</div>
+    
+    <div class="bracket" style="top: 20%; left: 3%;">{</div>
+    <div class="bracket" style="bottom: 25%; right: 5%;">}</div>
+    
+    <div class="code-icon" style="top: 5%; left: 20%;">
+        <i class="fas fa-code"></i>
+    </div>
+    
+    <div class="code-icon" style="bottom: 10%; right: 20%;">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 40%; left: 15%;">
+        <i class="fab fa-python" style="font-size: 2rem; color: #3776AB;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 60%; right: 20%;">
+        <i class="fas fa-terminal" style="font-size: 1.8rem; color: #4CAF50;"></i>
+    </div>
+    
+    <div class="console-decoration" style="top: 25%; right: 25%;"></div>
+    
+    <div class="floating-icon" style="bottom: 10%; left: 25%;">
+        <i class="fas fa-bug" style="font-size: 1.5rem; color: #FF5252;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 15%; right: 30%;">
+        <i class="fas fa-cogs" style="font-size: 1.8rem; color: #607D8B;"></i>
+    </div>
+    
+    <div class="code-icon" style="top: 70%; left: 20%;">
+        <i class="fas fa-file-code"></i>
+    </div>
+
+    <!-- Contenido principal -->
     <h1>Ejercicio de variables</h1>
-    <p>Crea un programa en Python que almacene en tres variables la información de una persona: su nombre, su edad y la ciudad donde vive. Asigna valores a cada una de estas variables (puedes inventarlos). Luego, utiliza la función print() para mostrar un mensaje que combine esas variables, siguiendo este formato: "Hola [nombre], tienes [edad] años y vives en [ciudad].". Asegúrate de que las variables se integren correctamente dentro del mensaje para que los datos se muestren de forma clara.</p>
+    <p>Crea un programa en Python que almacene en tres variables la información de una persona: su nombre, su edad y la ciudad donde vive. Asigna valores a cada una de estas variables (puedes inventarlos). Luego, utiliza la función <code>print()</code> para mostrar un mensaje que combine esas variables, siguiendo este formato:</p>
+    <p><strong>"Hola [nombre], tienes [edad] años y vives en [ciudad]."</strong></p>
+    <p>Asegúrate de que las variables se integren correctamente dentro del mensaje para que los datos se muestren de forma clara.</p>
     <p>Ejemplo de código:</p>
     <pre><code>
 nombre = "Juan"
@@ -30,7 +148,7 @@ print(f"Hola {nombre}, tienes {edad} años y vives en {ciudad}.")
     <p>Ahora, modifica el código para incluir una variable adicional que almacene la nacionalidad de la persona. Asegúrate de que el mensaje final incluya esta nueva variable.</p>
     <p>Ejemplo de código modificado:</p>
     <pre><code>
-        
+nacionalidad = "Española"
 print(f"Hola {nombre}, tienes {edad} años y eres de {nacionalidad}.")
     </code></pre>
     <p>Recuerda que puedes cambiar los valores de las variables para probar diferentes resultados. ¡Diviértete programando!</p>

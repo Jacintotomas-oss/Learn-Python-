@@ -17,19 +17,79 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)  # Nombre de usuario
     password = db.Column(db.String(120), nullable=False)  # Contraseña
 
+# Clase para las preguntas del quizz
+class Pregunta:
+    p_id = 0
+    pregunta = ''
+    opcion1 = ''
+    opcion2 = ''
+    opcion3 = ''
+    respuestaCorrecta = 0
+
+    def __init__(self, p_id, Pregunta, opcion1, opcion2, opcion3, respuestaCorrecta):
+        self.p_id = p_id
+        self.pregunta = Pregunta
+        self.opcion1 = opcion1
+        self.opcion2 = opcion2
+        self.opcion3 = opcion3
+        self.respuestaCorrecta = respuestaCorrecta
+
+    def Respuesta_Correcta(self):
+        if self.respuestaCorrecta == 1:
+            return self.opcion1
+        elif self.respuestaCorrecta == 2:
+            return self.opcion2
+        elif self.respuestaCorrecta == 3:
+            return self.opcion3
+
+# Lista de preguntas
+P1 = Pregunta(1, "¿Cual NO es un bucle en programacion?", "For", "While", "If", 3)
+P2 = Pregunta(2, "¿Cual es el lenguaje de programacion mas utilizado?", "Python", "Java", "C++",  1)
+P3 = Pregunta(3, "¿Cual de las siguientes es una cadena de texto?", "String", "Int", "Float", 1)
+P4 = Pregunta(4, "¿Cual de los siguiente es un condicional?", "If", "For", "While", 1)
+P5 = Pregunta(5, "¿Cual de los siguiente es un bucle?", "If", "For", "Switch", 2)
+P6 = Pregunta(6, "¿Que es un ciclo?", "Un bucle", "Una condicion", "Una variable", 1)
+P7 = Pregunta(7, "¿Cual de las siguientes es una funcion?", "Print", "If", "For", 1)
+P8 = Pregunta(8, "¿Que son los operadores logicos?", "Son operadores que comparan dos valores", "Son operadores que suman dos valores", "Son operadores que restan dos valores", 1)
+P9 = Pregunta(9, "¿Que es un diccionario en programacion?", "Una lista de valores", "Una lista de claves y valores", "Una lista de funciones", 2)
+P10 = Pregunta(10, "¿Para que sirve el operador %?", "Para sumar", "Para restar", "Para obtener el residuo de una division", 3)
+
+Preguntas_Lista = [P1, P2, P3, P4, P5, P6, P7, P8, P9, P10]
+
+@app.route('/quiz')
+def quiz():
+    return render_template('quiz.html', Preguntas_Lista=Preguntas_Lista)
+
+@app.route('/enviarquizz', methods=['POST'])
+def Enviar():
+    Respuestas_Correctas = 0
+    resultados = []
+
+    for pregunta in Preguntas_Lista:
+        Pregunta_id = str(pregunta.p_id)
+        opcion_elegida = request.form.get(Pregunta_id, "")
+        respuesta_correcta = pregunta.Respuesta_Correcta()
+
+        if opcion_elegida == respuesta_correcta:
+            Respuestas_Correctas += 1
+            resultados.append((pregunta.pregunta, opcion_elegida, "correcta"))
+        else:
+            resultados.append((pregunta.pregunta, opcion_elegida, "incorrecta"))
+
+    return render_template('resultados.html', resultados=resultados, correctas=Respuestas_Correctas)
+
+# Rutas de autenticación y contenido
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
         
-        # Verifica si el usuario ya existe
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash("El usuario ya existe. Intenta con otro nombre de usuario.", "danger")
             return redirect("/register")
         
-        # Crea un nuevo usuario
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         new_user = User(username=username, password=hashed_password.decode('utf-8'))
         db.session.add(new_user)
@@ -38,7 +98,7 @@ def register():
         flash("Registro exitoso. Ahora puedes iniciar sesión.", "success")
         return redirect("/login")
     
-    return render_template("register.html")  # Renderiza directamente el archivo register.html
+    return render_template("register.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -46,27 +106,30 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
         
-        # Verifica si el usuario existe
         user = User.query.filter_by(username=username).first()
         if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
-            session["user"] = username  # Guarda al usuario en la sesión
+            session["user"] = username
             flash("Inicio de sesión exitoso.", "success")
             return redirect("/")
         else:
             flash("Usuario o contraseña incorrectos.", "danger")
             return redirect("/login")
     
-    return render_template("login.html")  # Renderiza directamente el archivo login.html
+    return render_template("login.html")
 
 @app.route('/')
 def index():
     if "user" in session:
         return render_template("index.html", user=session["user"])
-    return redirect("/register")  # Redirige a la página de registro si no hay sesión
+    return redirect("/register")
+
+@app.route('/index')
+def index_redirect():
+    return render_template('index.html')
 
 @app.route("/logout")
 def logout():
-    session.pop("user", None)  # Elimina al usuario de la sesión
+    session.pop("user", None)
     flash("Has cerrado sesión correctamente", "info")
     return redirect("/login")
 

@@ -3,10 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Variables en Python</title>
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Fondo del body */
+        body {
+            background-color: #f0e6d2;
+            background-image: url("../static/img/image.png");
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            min-height: 100vh;
+            margin: 10px;
+            padding: 0;
+            color: black;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decoraciones visuales */
+        .python-symbol {
+            position: absolute;
+            opacity: 0.5;
+            z-index: -1;
+            font-size: 1.5rem;
+        }
+
+        .bracket {
+            position: absolute;
+            color: rgb(182, 180, 180);
+            font-size: 3rem;
+            font-weight: bold;
+            z-index: -1;
+        }
+        
+        .code-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .console-decoration {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: -1;
+        }
+
+        /* Estilo del texto */
+        h1 {
+            color: #581845;
+            text-align: center;
+            line-height: 2.5;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         /* Estilo personalizado para el bloque de código */
         pre code {
-            background-color:gray ; /* Fondo claro */
+            background-color: #f8f9fa; /* Fondo claro */
             color: #212529; /* Texto oscuro */
             padding: 10px;
             border-radius: 5px;
@@ -14,29 +98,66 @@
             display: block;
             overflow-x: auto; /* Scroll horizontal si es necesario */
         }
-
-        /* Fondo personalizado */
-        body {
-            background: #08090d;
-            background-image: url(https://assets.codepen.io/13471/abstract-light.jpg), 
-                              linear-gradient(to right in oklab, hsl(var(--hue2) 50% 75%), hsl(var(--hue1) 50% 75%));
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: hard-light;
-            padding: 0;
-            min-height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
-        }
     </style>
 </head>
 <body>
-    <h1 style ="color: #FFD700;">Variables</h1>
-    <p style ="color: #f0f3f4;">Una variable en Python es un identificador que actúa como un nombre simbólico asociado a un valor almacenado en la memoria del programa. Su propósito es permitir que ese valor pueda ser recuperado, modificado o utilizado a lo largo de la ejecución del código sin necesidad de reescribirlo constantemente. A diferencia de otros lenguajes de programación más estrictos, en Python no es necesario declarar previamente el tipo de dato que almacenará la variable; el propio lenguaje se encarga de inferir automáticamente el tipo en función del valor que se le asigna. Esto se conoce como tipado dinámico, lo que significa que una misma variable puede referirse a distintos tipos de datos a lo largo del programa (por ejemplo, primero un número entero y después una cadena de texto), simplemente cambiando su asignación. Esta flexibilidad facilita la escritura de código más simple y adaptable, permitiendo al programador centrarse más en la lógica del problema y menos en las formalidades de la declaración de tipos. Además, las variables en Python son en realidad referencias a objetos en memoria, lo que implica que no contienen directamente los datos, sino que apuntan a un espacio donde el valor está guardado, permitiendo así una gestión eficiente de los recursos del sistema.</p>
-    <p style ="color: #f0f3f4;">Aqui tienes un ejemplo:</p>
+    <!-- Decoraciones de fondo -->
+    <div class="python-symbol" style="top: 10%; right: 15%;">🐍</div>
+    <div class="python-symbol" style="bottom: 15%; left: 10%;">{}[]</div>
+    
+    <div class="bracket" style="top: 20%; left: 3%;">{</div>
+    <div class="bracket" style="bottom: 25%; right: 5%;">}</div>
+    
+    <div class="code-icon" style="top: 5%; left: 20%;">
+        <i class="fas fa-code"></i>
+    </div>
+    
+    <div class="code-icon" style="bottom: 10%; right: 20%;">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 40%; left: 15%;">
+        <i class="fab fa-python" style="font-size: 2rem; color: #3776AB;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 60%; right: 20%;">
+        <i class="fas fa-terminal" style="font-size: 1.8rem; color: #4CAF50;"></i>
+    </div>
+    
+    <div class="console-decoration" style="top: 25%; right: 25%;"></div>
+    
+    <div class="floating-icon" style="bottom: 10%; left: 25%;">
+        <i class="fas fa-bug" style="font-size: 1.5rem; color: #FF5252;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 15%; right: 30%;">
+        <i class="fas fa-cogs" style="font-size: 1.8rem; color: #607D8B;"></i>
+    </div>
+    
+    <div class="code-icon" style="top: 70%; left: 20%;">
+        <i class="fas fa-file-code"></i>
+    </div>
+
+    <!-- Contenido principal -->
+    <h1 style="color: #581845;">Variables</h1>
+    <p>💡 ¿Qué son las variables?</p>
+    <p>Las variables son como pequeñas cajas donde guardas información. En Python, no necesitas decir qué tipo de dato vas a guardar (texto, número, etc.), ¡Python lo entiende solito! Se usan para guardar datos y reutilizarlos cuando los necesites.</p>
+    <p>Entre los tipos de variables más comunes están:</p>
+    <ul>
+        <li>int: Números enteros (5, 100)</li>
+        <li>float: Números decimales (3.14)</li>
+        <li>str: Textos (cadenas de caracteres)</li>
+        <li>bool: Verdadero (True) o Falso (False)</li>
+    </ul>
+    <p>Debes tener en cuenta que para crear una variable, solo necesitas elegir un nombre y usar el signo igual (=) para asignarle un valor. Por ejemplo:</p>
+    <img src="static/img/variables.png" alt="Ejemplo de variables en Python">
+
+    <p>Aquí tienes un ejemplo:</p>
     <pre><code>
 nombre = "Juan"
 edad = 25
 print(nombre, edad)
     </code></pre>
-    <a href="/">Volver al inicio</a>
+    <a href="/" style="color: #FFD700;">Volver al inicio</a>
 </body>
 </html>

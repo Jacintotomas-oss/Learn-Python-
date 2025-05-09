@@ -5,31 +5,144 @@
     <title>Learn Python</title>
     <link rel="stylesheet" href="static/style.css">
     
-  
     <!-- Incluye Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--fondo-->
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Estilos personalizados -->
     <style>
+        /* Fondo del body */
         body {
-            background: #08090d;
-            background-image: url(https://assets.codepen.io/13471/abstract-light.jpg), 
-                              linear-gradient(to right in oklab, hsl(222 50% 75%), hsl(255 50% 75%));
+            background-color: #f0e6d2;
+            background-image: url("../static/img/image.png");
             background-size: cover;
             background-position: center;
-            background-blend-mode: hard-light;
-            padding: 0;
+            background-blend-mode: multiply;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
 
-       
+        /* Decoraciones flotantes */
+        .python-symbol {
+            position: absolute;
+            opacity: 0.5;
+            z-index: -1;
+            font-size: 1.5rem;
+        }
+
+        .bracket {
+            position: absolute;
+            color: rgb(182, 180, 180);
+            font-size: 3rem;
+            font-weight: bold;
+            z-index: -1;
+        }
+        
+        .code-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .console-decoration {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: -1;
+        }
+
+        /* Estilo del texto */
+        h1 {
+            color: #581845
+            text-align: center;
+            line-height: 2.5;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .btn-danger {
+            background-color: #FF5252;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #E53935;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Decoraciones de fondo -->
+    <div class="python-symbol" style="top: 10%; right: 15%;">🐍</div>
+    <div class="python-symbol" style="bottom: 15%; left: 10%;">{}[]</div>
+    
+    <div class="bracket" style="top: 20%; left: 3%;">{</div>
+    <div class="bracket" style="bottom: 25%; right: 5%;">}</div>
+    
+    <div class="code-icon" style="top: 5%; left: 20%;">
+        <i class="fas fa-code"></i>
+    </div>
+    
+    <div class="code-icon" style="bottom: 10%; right: 20%;">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 40%; left: 15%;">
+        <i class="fab fa-python" style="font-size: 2rem; color: #3776AB;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 60%; right: 20%;">
+        <i class="fas fa-terminal" style="font-size: 1.8rem; color: #4CAF50;"></i>
+    </div>
+    
+    <div class="console-decoration" style="top: 25%; right: 25%;"></div>
+    
+    <div class="floating-icon" style="bottom: 10%; left: 25%;">
+        <i class="fas fa-bug" style="font-size: 1.5rem; color: #FF5252;"></i>
+    </div>
+    
+    <div class="floating-icon" style="top: 15%; right: 30%;">
+        <i class="fas fa-cogs" style="font-size: 1.8rem; color: #607D8B;"></i>
+    </div>
+    
+    <div class="code-icon" style="top: 70%; left: 20%;">
+        <i class="fas fa-file-code"></i>
+    </div>
+
+    <!-- Contenido principal -->
     <div class="container mt-5">
         <img src="static/img/logo.png" alt="Logo" class="me-3" style="width: 50px; height: 50px;">
-        <h1 class="text-center" style="line-height: 2.5; color: #FFD700;">Learn Python 🐍</h1>
+        <h1 style= "color:#581845; text-align: center;">Learn Python 🐍</h1>
         
-        <p style="line-height: 1.5; color: #f0f3f4;">Bienvenido a Learn Python donde aprenderás los conceptos básicos del lenguaje Python, este sitio veras unicamente los temas mas sencillos como los conceptos de variables, condicionales, funciones entre otros eso con el fin de que puedas conocer los conceptos mas basicos del lenguaje para que despues puedas seguir con temas mas complejos debes tener en cuenta que por cada tema que finalizes deberas elaborar un ejercicio para poder practicar, tambien esta el apartado de videos donde te puedes apoyar con videos de youtube</p>
-        <p style="line-height: 1.5; color: #f0f3f4;">Selecciona un tema para que podamos comenzar:</p>
+        <p>Bienvenido a Learn Python donde aprenderás los conceptos básicos del lenguaje Python. Este sitio incluye temas como variables, condicionales, funciones, entre otros, para que puedas conocer los conceptos más básicos del lenguaje. Por cada tema que finalices, deberás elaborar un ejercicio para practicar. También puedes apoyarte con los videos de YouTube que te hemos facilitado para que puedas comprender mejor cada tema que vayas finalizando.</p>
+        <p>Selecciona un tema para que podamos comenzar:</p>
 
         <!-- Navegación con pestañas -->
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -54,13 +167,16 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-diccionarios-tab" data-bs-toggle="pill" data-bs-target="#pills-diccionarios" type="button" role="tab" aria-controls="pills-diccionarios" aria-selected="false">Diccionarios</button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-quizz-tab" data-bs-toggle="pill" data-bs-target="#pills-quizz" type="button" role="tab" aria-controls="pills-quizz" aria-selected="false">Quizz</button>
+            </li>
         </ul>
 
         <!-- Contenido de las pestañas -->
         <div class="tab-content" id="pills-tabContent">
             <!-- Pestaña Variables -->
             <div class="tab-pane fade show active" id="pills-variables" role="tabpanel" aria-labelledby="pills-variables-tab" tabindex="0">
-                <h2 style="color: #FFD700;">Variables</h2>
+                <h2 style="color: #581845;">Variables</h2>
                 <ul>
                     <li><a href="/variables">Teoría de Variables</a></li>
                     <li><a href="/variablesEjemplo">Ejercicio de Variables</a></li>
@@ -69,7 +185,7 @@
 
             <!-- Pestaña Condicionales -->
             <div class="tab-pane fade" id="pills-condicionales" role="tabpanel" aria-labelledby="pills-condicionales-tab" tabindex="0">
-                <h2 style="color: #FFD700;">Condicionales</h2>
+                <h2 style="color: #581845;">Condicionales</h2>
                 <ul>
                     <li><a href="/condicionales">Teoría de Condicionales</a></li>
                     <li><a href="/cEjemplo">Ejercicio de Condicionales</a></li>
@@ -78,7 +194,7 @@
 
             <!-- Pestaña Funciones -->
             <div class="tab-pane fade" id="pills-funciones" role="tabpanel" aria-labelledby="pills-funciones-tab" tabindex="0">
-                <h2 style ="color: #FFD700;">Funciones</h2>
+                <h2 style ="color: #581845;">Funciones</h2>
                 <ul>
                     <li><a href="/funciones">Teoría de Funciones</a></li>
                     <li><a href="/funcionesEjemplo">Ejercicio de Funciones</a></li>
@@ -87,7 +203,7 @@
 
             <!-- Pestaña Ciclos -->
             <div class="tab-pane fade" id="pills-ciclos" role="tabpanel" aria-labelledby="pills-ciclos-tab" tabindex="0">
-                <h2 style ="color: #FFD700;">Ciclos</h2>
+                <h2 style ="color: #581845;">Ciclos</h2>
                 <ul>
                     <li><a href="/ciclos">Teoría de Ciclos</a></li>
                     <li><a href="/ciclosEjemplo">Ejercicio de Ciclos</a></li>
@@ -96,7 +212,7 @@
 
             <!-- Pestaña Listas -->
             <div class="tab-pane fade" id="pills-listas" role="tabpanel" aria-labelledby="pills-listas-tab" tabindex="0">
-                <h2 style ="color: #FFD700;">Listas</h2>
+                <h2 style ="color: #581845;">Listas</h2>
                 <ul>
                     <li><a href="/listas">Teoría de Listas</a></li>
                     <li><a href="/listasEjemplo">Ejercicio de Listas</a></li>
@@ -104,7 +220,7 @@
             </div>
             <!-- Pestaña Operadores Lógicos -->
             <div class="tab-pane fade" id="pills-ol" role="tabpanel" aria-labelledby="pills-ol-tab" tabindex="0">
-                <h2 style= "color: #FFD700;">Operadores Lógicos</h2>
+                <h2 style= "color: #581845;">Operadores Lógicos</h2>
                 <ul>
                     <li><a href="/OL">Teoría de Operadores Lógicos</a></li>
                     <li><a href="/OLejemplos">Ejercicio de Operadores Lógicos</a></li>
@@ -114,12 +230,20 @@
 
             <!-- Pestaña Diccionarios -->
             <div class="tab-pane fade" id="pills-diccionarios" role="tabpanel" aria-labelledby="pills-diccionarios-tab" tabindex="0">
-                <h2 style="color: #FFD700;">Diccionarios</h2>
+                <h2 style="color: #581845;">Diccionarios</h2>
                 <ul>
                     <li><a href="/diccionario">Teoría de Diccionarios</a></li>
                     <li><a href="/Dejemplos">Ejercicio de Diccionarios</a></li>
                 </ul>
-            </div>    
+            </div>   
+            
+            <!-- Pestaña Quizz -->
+            <div class="tab-pane fade" id="pills-quizz" role="tabpanel" aria-labelledby="pills-quizz-tab" tabindex="0">
+                <h2 style="color: #581845;">Quizz</h2>
+                <ul>
+                    <li><a href="/quiz">Ir al Quizz</a></li>
+                </ul>
+            </div>
 
         </div>
 
@@ -127,7 +251,7 @@
         <!-- Sección fija para videos y cerrar sesión -->
         <hr class="my-4">
 
-        <p style = "color: #f0f3f4;">Si tienes alguna pregunta o necesitas ayuda, consulta los siguientes videos.</p>
+        <p>Si tienes alguna pregunta o necesitas ayuda, consulta los siguientes videos.</p>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Videos de Ayuda
@@ -146,12 +270,20 @@
                 <li><a class="dropdown-item" href="https://www.youtube.com/watch?v=C0w1PYYfYBA" target="_blank">Operadores Lógicos</a></li>
             </ul>
         </div>
+        <p class="mt-4">Ahora para que puedas practicar aun mas y tengas mas claros los conceptos basicos del lenguaje realiza el Quizz que esta al final de los demas temas , en el quizz hay preguntas de los conceptos vistos en los temas del sitio </p>
+        <div class="tab-pane fade" id="pills-quizz" role="tabpanel" aria-labelledby="pills-quizz-tab" tabindex="0">
+            <h2 style="color: #FFD700;">Quizz</h2>
+            <ul>
+                <li><a href="/quiz">quiz</a></li>
+            <ul>
+            </di>
 
-        <p style ="color : #f0f3f4; ">Recuerda que este sitio es un recurso para aprender los conceptos básicos de Python. ¡Disfruta aprendiendo!</p>
+
 
         <div class="text-center mt-4">
             <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
         </div>
+
     </div>
 
     <!-- Incluye Bootstrap JS -->
